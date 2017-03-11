@@ -1,4 +1,6 @@
-//These are increasingly efficient algorithms for finding a value in an array
+//These are increasingly efficient algorithms for finding a value in an array.
+
+//Test Test
 
 function linearSearch(array, value) {
 	var n = array.length - 1
