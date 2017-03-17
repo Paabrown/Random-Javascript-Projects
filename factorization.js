@@ -1,11 +1,7 @@
-//First attempt. 
-//Seems like there's a more elegant way to accomplish lines 47-50.
-
-
 function factorization(n) {
 	let current = n
 	let next = []
-	let primeFactors = []
+	let primeFactors = [1]
 
 	while(current) {
 		let largestPossibleFactor = Math.round(current/2)
@@ -46,10 +42,5 @@ function factorization(n) {
 		}
 		//Reload current with our list of factors to check next
 		 current = next.shift(0)
-	} 
-	//Add 1 if it's not there already
-	if (!primeFactors.includes(1)) {
-		primeFactors.push(1)
-	} 
-	return primeFactors
+	} return primeFactors
 }
