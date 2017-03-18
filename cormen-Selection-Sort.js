@@ -2,7 +2,6 @@
 //Transcribed into javascript from description in Cormen's "Algorithms Unlocked"
 
 function selectionSort(array) {
-	debugger
 	let indexOfSmallest = 0
 	let beginningOfSubArray = 0
 	let endOfSubArray = array.length
