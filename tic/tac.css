@@ -1,0 +1,125 @@
+#board {
+  background-color: blue;
+  height: 165px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  width: 200px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  width: 50px;
+  border: none;
+  color: white;
+  background-color: green;
+  margin: 2px;
+}
+
+h1 {
+  float:center;
+  text-align:center;
+}
+
+#start {
+  color: white;
+  font-size: 4rem;
+  position: relative;
+  text-decoration: none;
+  top: 3rem;
+}
+
+#resetX {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  width: 60px;
+  border: none;
+  color: white;
+  background-color: blue;
+  margin: 2px;
+}
+
+#resetO {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  width: 60px;
+  border: none;
+  color: white;
+  background-color: blue;
+  margin: 2px;
+}
+
+#computerToggle {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  width: 100px;
+  height: 70px;
+  border: none;
+  color: white;
+  background-color: green;
+  margin: 2px;
+}
+
+#control-Panel {
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  width: 250px;
+  height: 210px;
+  border: none;
+  color: white;
+  background-color: grey;
+  margin: 2px;
+  top: 50px;
+  right: 50px;
+}
+
+#message {
+  color: black;
+  font-size: 4rem;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  padding: 50px;
+  top: 3rem;
+}
+
+#constrol-panel-message {
+  color: white;
+  font-size: 12px;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+}
+
+.difficultyButton {
+  padding: 5px;
+  font-size: 8px;
+  width: 75px;
+  border: none;
+  color: white;
+  background-color: green;
+  margin: 2px;
+
+}
+
+#difficultyArea {
+  color: white;
+  background-color: blue;
+  height: 90px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 100px;
+  float:left;
+}
