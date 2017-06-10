@@ -5,20 +5,21 @@
 "use strict"
 
 const START = document.getElementById('start')
-const htmlBoard = document.getElementById('board');
-const message = document.getElementById('message');
-const compButton = document.getElementById('computerToggle')
-const difficultyArea = document.getElementById('difficultyArea')
-const controlMessage = document.getElementById('controlPanelMessage')
-const boardSize = 3;
+const HTMLBOARD = document.getElementById('board');
+const MESSAGE = document.getElementById('message');
+const COMPUTERBUTTON = document.getElementById('computerToggle')
+const DIFFICULTYAREA = document.getElementById('difficultyArea')
+const CONTROLMESSAGE = document.getElementById('controlPanelMessage')
+const BOARDSIZE = 3;
 
 var activePlayer = 1;
 var computerOn = true;
 var difficulty = 3;
 
-START.addEventListener('click', start)
+START.addEventListener('click', start);
+COMPUTERBUTTON.addEventListener('click', toggleComputer);
+
 generateDifficultyButtons();
-compButton.addEventListener('click', toggleComputer)
 
 //Basic Board Functions
 
@@ -36,9 +37,9 @@ function generateDifficultyButtons() {
 		button.innerHTML = modes[i];
 		button.addEventListener('click', function() {
 			difficulty = this.difficulty; 
-			controlMessage.innerHTML = 'Difficulty is now ' + this.innerHTML;
+			CONTROLMESSAGE.innerHTML = 'Difficulty is now ' + this.innerHTML;
 		});
-		difficultyArea.appendChild(button);
+		DIFFICULTYAREA.appendChild(button);
 	}
 }
 
@@ -59,14 +60,14 @@ function keyMaker(y, x) {
 }
 
 function placePiece(board, spaceKey, piece) {
-	controlMessage.innerHTML = '';
+	CONTROLMESSAGE.innerHTML = '';
 	board[spaceKey] = piece;
 	renderBoard(board);
 	return board;
 }
 
 function checkIfPlayerWon(board, piece) {
-	var winningSum = piece * boardSize;
+	var winningSum = piece * BOARDSIZE;
 
 	return !!checkLines(board, checkLineBySum, winningSum);
 }
@@ -106,10 +107,10 @@ function collectRows(board) {
 	var row;
 	var key;
 
-	for (var y = 0; y < boardSize; y++) {
+	for (var y = 0; y < BOARDSIZE; y++) {
 		row = {};
 
-		for (var x = 0; x < boardSize; x++) {
+		for (var x = 0; x < BOARDSIZE; x++) {
 			key = keyMaker(y, x);
 			row[key] = board[key];
 		} 
@@ -123,10 +124,10 @@ function collectColumns(board) {
 	var column;
 	var key;
 
-	for (var x = 0; x < boardSize; x++) {
+	for (var x = 0; x < BOARDSIZE; x++) {
 		column = {};
 
-		for (var y = 0; y < boardSize; y++) {
+		for (var y = 0; y < BOARDSIZE; y++) {
 			key = keyMaker(y, x);
 			column[key] = board[key];
 		} 
@@ -142,9 +143,9 @@ function collectDiagonals(board) {
 	var key1;
 	var key2;
 
-	for (var xy = 0; xy < boardSize; xy++) {
+	for (var xy = 0; xy < BOARDSIZE; xy++) {
 		key1 = keyMaker(xy, xy);
-		key2 = keyMaker(xy, boardSize - 1 - xy);
+		key2 = keyMaker(xy, BOARDSIZE - 1 - xy);
 
 		diagonals[0][key1] = board[key1];
 		diagonals[1][key2] = board[key2];
@@ -167,12 +168,12 @@ function resetBoard(board) {
 }
 
 function renderBoard(board) {
-	htmlBoard.innerHTML = '';
+	HTMLBOARD.innerHTML = '';
 	var spaceKey;
 
-	for (var y = 0; y < boardSize; y++) {
-	 	htmlBoard.appendChild(document.createElement('br'));
-	 	for (var x = 0; x < boardSize; x++) {
+	for (var y = 0; y < BOARDSIZE; y++) {
+	 	HTMLBOARD.appendChild(document.createElement('br'));
+	 	for (var x = 0; x < BOARDSIZE; x++) {
 	 		spaceKey = keyMaker(y, x)
 	 		renderButton(board, spaceKey);
 	 	}
@@ -205,7 +206,7 @@ function renderButton(board, spaceKey) {
 
 	button.id = 'button-' + spaceKey;
 
-	htmlBoard.appendChild(button);
+	HTMLBOARD.appendChild(button);
 }
 
 function disableBoard(board) {
@@ -227,12 +228,12 @@ function togglePieces() {
 function toggleComputer() {
 	if (computerOn) {
 		computerOn = false;
-		compButton.innerHTML = 'Turn EL on';
-		controlMessage.innerHTML = 'Computer is now off'
+		COMPUTERBUTTON.innerHTML = 'Turn EL on';
+		CONTROLMESSAGE.innerHTML = 'Computer is now off'
 	} else {
 		computerOn = true;
-		compButton.innerHTML = 'Turn EL off';
-		controlMessage.innerHTML = 'Computer is now on'
+		COMPUTERBUTTON.innerHTML = 'Turn EL off';
+		CONTROLMESSAGE.innerHTML = 'Computer is now on'
 	}
 }
 
@@ -266,11 +267,11 @@ function checkforEndingConditions(board, piece) {
 
 	if (checkIfPlayerWon(board, piece)) {
 		disableBoard(board);
-		message.innerHTML = player.toString().toUpperCase() + ' wins!'
+		MESSAGE.innerHTML = player.toString().toUpperCase() + ' wins!';
 		return true;
 	} else if (checkIfTie(board)) {
 		disableBoard(board);
-		message.innerHTML = 'It\'s a tie!'	
+		MESSAGE.innerHTML = 'It\'s a tie!';
 		return true;
 	} return false;
 }
@@ -282,9 +283,9 @@ function identifyPlayer(piece) {
 
 function start() {
 	START.style.display = 'none';
-	message.innerHTML = 'Fight!';
-	controlMessage.innerHTML = '';
-	var board = boardConstructor(boardSize);
+	MESSAGE.innerHTML = 'Fight!';
+	CONTROLMESSAGE.innerHTML = '';
+	var board = boardConstructor(BOARDSIZE);
 	renderBoard(board);
 
 	activePlayer = 1;
@@ -298,10 +299,10 @@ function startAsO() {
 	}
 
 	START.style.display = 'none';
-	message.innerHTML = 'Fight!';
-	controlMessage.innerHTML = '';
+	MESSAGE.innerHTML = 'Fight!';
+	CONTROLMESSAGE.innerHTML = '';
 
-	var board = boardConstructor(boardSize);
+	var board = boardConstructor(BOARDSIZE);
 	renderBoard(board);
 	
 	if (computerOn) {
@@ -356,7 +357,7 @@ function computerChoice(board, piece) {
 }
 
 function findWinningMove(board, piece) {
-	var winningLineValue = piece * (boardSize - 1);
+	var winningLineValue = piece * (BOARDSIZE - 1);
 	var winningLine = checkLines(board, checkLineBySum, winningLineValue);
 
 	if (winningLine) {
