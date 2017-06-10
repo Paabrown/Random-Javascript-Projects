@@ -228,11 +228,11 @@ function togglePieces() {
 function toggleComputer() {
 	if (computerOn) {
 		computerOn = false;
-		COMPUTERBUTTON.innerHTML = 'Turn EL on';
+		COMPUTERBUTTON.innerHTML = 'Turn computer on';
 		CONTROLMESSAGE.innerHTML = 'Computer is now off'
 	} else {
 		computerOn = true;
-		COMPUTERBUTTON.innerHTML = 'Turn EL off';
+		COMPUTERBUTTON.innerHTML = 'Turn computer off';
 		CONTROLMESSAGE.innerHTML = 'Computer is now on'
 	}
 }
