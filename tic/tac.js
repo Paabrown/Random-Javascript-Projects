@@ -4,20 +4,20 @@
 //disabled free space is -2
 "use strict"
 
-const START = document.getElementById('start')
-const HTMLBOARD = document.getElementById('board');
-const MESSAGE = document.getElementById('message');
-const COMPUTERBUTTON = document.getElementById('computerToggle')
-const DIFFICULTYAREA = document.getElementById('difficultyArea')
-const CONTROLMESSAGE = document.getElementById('controlPanelMessage')
+const htmlStart = document.getElementById('start')
+const htmlBoard = document.getElementById('board');
+const message = document.getElementById('message');
+const computerButton = document.getElementById('computerToggle')
+const difficultyArea = document.getElementById('difficultyArea')
+const controlMessage = document.getElementById('controlPanelMessage')
 const BOARDSIZE = 3;
 
 var activePlayer = 1;
 var computerOn = true;
 var difficulty = 3;
 
-START.addEventListener('click', start);
-COMPUTERBUTTON.addEventListener('click', toggleComputer);
+htmlStart.addEventListener('click', start);
+computerButton.addEventListener('click', toggleComputer);
 
 generateDifficultyButtons();
 
@@ -37,9 +37,9 @@ function generateDifficultyButtons() {
 		button.innerHTML = modes[i];
 		button.addEventListener('click', function() {
 			difficulty = this.difficulty; 
-			CONTROLMESSAGE.innerHTML = 'Difficulty is now ' + this.innerHTML;
+			controlMessage.innerHTML = 'Difficulty is now ' + this.innerHTML;
 		});
-		DIFFICULTYAREA.appendChild(button);
+		difficultyArea.appendChild(button);
 	}
 }
 
@@ -60,7 +60,7 @@ function keyMaker(y, x) {
 }
 
 function placePiece(board, spaceKey, piece) {
-	CONTROLMESSAGE.innerHTML = '';
+	controlMessage.innerHTML = '';
 	board[spaceKey] = piece;
 	renderBoard(board);
 	return board;
@@ -168,11 +168,11 @@ function resetBoard(board) {
 }
 
 function renderBoard(board) {
-	HTMLBOARD.innerHTML = '';
+	htmlBoard.innerHTML = '';
 	var spaceKey;
 
 	for (var y = 0; y < BOARDSIZE; y++) {
-	 	HTMLBOARD.appendChild(document.createElement('br'));
+	 	htmlBoard.appendChild(document.createElement('br'));
 	 	for (var x = 0; x < BOARDSIZE; x++) {
 	 		spaceKey = keyMaker(y, x)
 	 		renderButton(board, spaceKey);
@@ -206,7 +206,7 @@ function renderButton(board, spaceKey) {
 
 	button.id = 'button-' + spaceKey;
 
-	HTMLBOARD.appendChild(button);
+	htmlBoard.appendChild(button);
 }
 
 function disableBoard(board) {
@@ -228,12 +228,12 @@ function togglePieces() {
 function toggleComputer() {
 	if (computerOn) {
 		computerOn = false;
-		COMPUTERBUTTON.innerHTML = 'Turn computer on';
-		CONTROLMESSAGE.innerHTML = 'Computer is now off'
+		computerButton.innerHTML = 'Turn computer on';
+		controlMessage.innerHTML = 'Computer is now off'
 	} else {
 		computerOn = true;
-		COMPUTERBUTTON.innerHTML = 'Turn computer off';
-		CONTROLMESSAGE.innerHTML = 'Computer is now on'
+		computerButton.innerHTML = 'Turn computer off';
+		controlMessage.innerHTML = 'Computer is now on'
 	}
 }
 
@@ -267,11 +267,11 @@ function checkforEndingConditions(board, piece) {
 
 	if (checkIfPlayerWon(board, piece)) {
 		disableBoard(board);
-		MESSAGE.innerHTML = player.toString().toUpperCase() + ' wins!';
+		message.innerHTML = player.toString().toUpperCase() + ' wins!';
 		return true;
 	} else if (checkIfTie(board)) {
 		disableBoard(board);
-		MESSAGE.innerHTML = 'It\'s a tie!';
+		message.innerHTML = 'It\'s a tie!';
 		return true;
 	} return false;
 }
@@ -282,9 +282,9 @@ function identifyPlayer(piece) {
 }
 
 function start() {
-	START.style.display = 'none';
-	MESSAGE.innerHTML = 'Fight!';
-	CONTROLMESSAGE.innerHTML = '';
+	htmlStart.style.display = 'none';
+	message.innerHTML = 'Fight!';
+	controlMessage.innerHTML = '';
 	var board = boardConstructor(BOARDSIZE);
 	renderBoard(board);
 
@@ -298,9 +298,9 @@ function startAsO() {
 		activePlayer = -1;
 	}
 
-	START.style.display = 'none';
-	MESSAGE.innerHTML = 'Fight!';
-	CONTROLMESSAGE.innerHTML = '';
+	htmlStart.style.display = 'none';
+	message.innerHTML = 'Fight!';
+	controlMessage.innerHTML = '';
 
 	var board = boardConstructor(BOARDSIZE);
 	renderBoard(board);
